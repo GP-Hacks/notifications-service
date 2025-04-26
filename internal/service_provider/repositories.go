@@ -1,8 +1,8 @@
 package service_provider
 
 import (
-	"github.com/GP-Hacks/kdt2024-notifications/internal/repositories/notifications_repository"
-	"github.com/GP-Hacks/kdt2024-notifications/internal/repositories/tokens_repository"
+	"github.com/GP-Hacks/notifications/internal/repositories/notifications_repository"
+	"github.com/GP-Hacks/notifications/internal/repositories/tokens_repository"
 )
 
 func (s *ServiceProvider) NotificationsRepository() *notifications_repository.NotificationsRepository {

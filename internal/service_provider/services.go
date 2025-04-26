@@ -1,6 +1,6 @@
 package service_provider
 
-import notification_service "github.com/GP-Hacks/kdt2024-notifications/internal/services/notifications_service"
+import notification_service "github.com/GP-Hacks/notifications/internal/services/notifications_service"
 
 func (s *ServiceProvider) NotificationsService() *notification_service.NotificationsService {
 	if s.notificationsService == nil {

@@ -3,7 +3,7 @@ package service_provider
 import (
 	"context"
 
-	"github.com/GP-Hacks/kdt2024-notifications/config"
+	"github.com/GP-Hacks/notifications/config"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )

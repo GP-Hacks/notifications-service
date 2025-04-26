@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/GP-Hacks/kdt2024-notifications/internal/models"
+	"github.com/GP-Hacks/notifications/internal/models"
 )
 
 func (s *NotificationsService) SendNotifications(ctx context.Context, notification *models.Notification) {

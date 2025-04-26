@@ -1,6 +1,9 @@
 package service_provider
 
-import "github.com/GP-Hacks/kdt2024-notifications/internal/controllers/rabbitmq"
+import (
+	"github.com/GP-Hacks/notifications/internal/controllers/grpc"
+	"github.com/GP-Hacks/notifications/internal/controllers/rabbitmq"
+)
 
 func (s *ServiceProvider) NotificationsController() *rabbitmq.NotificationsController {
 	if s.notificationsController == nil {
@@ -8,4 +11,12 @@ func (s *ServiceProvider) NotificationsController() *rabbitmq.NotificationsContr
 	}
 
 	return s.notificationsController
+}
+
+func (s *ServiceProvider) TokensController() *grpc.TokensController {
+	if s.tokensController == nil {
+		s.tokensController = grpc.NewTokensController(s.NotificationsService())
+	}
+
+	return s.tokensController
 }

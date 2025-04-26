@@ -6,7 +6,7 @@ import (
 
 	firebase "firebase.google.com/go"
 	"firebase.google.com/go/messaging"
-	"github.com/GP-Hacks/kdt2024-notifications/config"
+	"github.com/GP-Hacks/notifications/config"
 	"google.golang.org/api/option"
 )
 

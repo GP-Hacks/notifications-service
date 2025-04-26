@@ -3,7 +3,7 @@ package notification_service
 import (
 	"context"
 
-	"github.com/GP-Hacks/kdt2024-notifications/internal/models"
+	"github.com/GP-Hacks/notifications/internal/models"
 )
 
 type (

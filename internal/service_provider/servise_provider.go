@@ -3,10 +3,11 @@ package service_provider
 import (
 	firebase "firebase.google.com/go"
 	"firebase.google.com/go/messaging"
-	"github.com/GP-Hacks/kdt2024-notifications/internal/controllers/rabbitmq"
-	"github.com/GP-Hacks/kdt2024-notifications/internal/repositories/notifications_repository"
-	"github.com/GP-Hacks/kdt2024-notifications/internal/repositories/tokens_repository"
-	notification_service "github.com/GP-Hacks/kdt2024-notifications/internal/services/notifications_service"
+	"github.com/GP-Hacks/notifications/internal/controllers/grpc"
+	"github.com/GP-Hacks/notifications/internal/controllers/rabbitmq"
+	"github.com/GP-Hacks/notifications/internal/repositories/notifications_repository"
+	"github.com/GP-Hacks/notifications/internal/repositories/tokens_repository"
+	notification_service "github.com/GP-Hacks/notifications/internal/services/notifications_service"
 	"github.com/streadway/amqp"
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -15,6 +16,7 @@ import (
 // Struct for provide service objects
 type ServiceProvider struct {
 	notificationsController *rabbitmq.NotificationsController
+	tokensController        *grpc.TokensController
 	notificationsService    *notification_service.NotificationsService
 	notificationsRepository *notifications_repository.NotificationsRepository
 	tokensRepository        *tokens_repository.TokensRepository

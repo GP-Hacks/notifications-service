@@ -4,9 +4,9 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/GP-Hacks/kdt2024-notifications/config"
-	"github.com/GP-Hacks/kdt2024-notifications/internal/models"
-	notification_service "github.com/GP-Hacks/kdt2024-notifications/internal/services/notifications_service"
+	"github.com/GP-Hacks/notifications/config"
+	"github.com/GP-Hacks/notifications/internal/models"
+	notification_service "github.com/GP-Hacks/notifications/internal/services/notifications_service"
 	"github.com/streadway/amqp"
 )
 

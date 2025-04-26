@@ -1,7 +1,7 @@
 package service_provider
 
 import (
-	"github.com/GP-Hacks/kdt2024-notifications/config"
+	"github.com/GP-Hacks/notifications/config"
 	"github.com/streadway/amqp"
 )
 

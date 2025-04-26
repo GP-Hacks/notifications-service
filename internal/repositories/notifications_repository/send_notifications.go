@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"firebase.google.com/go/messaging"
-	"github.com/GP-Hacks/kdt2024-notifications/internal/models"
+	"github.com/GP-Hacks/notifications/internal/models"
 )
 
 func (r *NotificationsRepository) SendNotifications(ctx context.Context, notification *models.Notification, tokens ...string) error {

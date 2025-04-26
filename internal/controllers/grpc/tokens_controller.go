@@ -3,9 +3,8 @@ package grpc
 import (
 	"context"
 
-	notification_service "github.com/GP-Hacks/kdt2024-notifications/internal/services/notifications_service"
+	notification_service "github.com/GP-Hacks/notifications/internal/services/notifications_service"
 	desc "github.com/GP-Hacks/proto/pkg/api"
-	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/emptypb"
 )
 
@@ -20,7 +19,7 @@ func NewTokensController(ns *notification_service.NotificationsService) *TokensC
 	}
 }
 
-func (tc *TokensController) AddUserToken(ctx context.Context, in *desc.AddUserTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (tc *TokensController) AddUserToken(ctx context.Context, in *desc.AddUserTokenRequest) (*emptypb.Empty, error) {
 	err := tc.notificationsService.AddUserToken(ctx, in.GetUserId(), in.GetToken())
 
 	return &emptypb.Empty{}, err
