@@ -7,18 +7,22 @@ import (
 	"github.com/GP-Hacks/notifications/config"
 	"github.com/GP-Hacks/notifications/internal/models"
 	notification_service "github.com/GP-Hacks/notifications/internal/services/notifications_service"
+	"github.com/GP-Hacks/notifications/internal/utils/logger"
 	"github.com/streadway/amqp"
+	"go.uber.org/zap"
 )
 
 type NotificationsController struct {
 	connection           *amqp.Connection
 	notificationsService *notification_service.NotificationsService
+	logger               *zap.Logger
 }
 
 func NewNotificationsController(conn *amqp.Connection, service *notification_service.NotificationsService) *NotificationsController {
 	return &NotificationsController{
 		connection:           conn,
 		notificationsService: service,
+		logger:               logger.GetLogger(),
 	}
 }
 
