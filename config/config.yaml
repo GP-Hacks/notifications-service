@@ -1,0 +1,23 @@
+grpc:
+  port: "50051"
+
+rabbitmq:
+  address: "amqp://guest:guest@localhost:5672/"
+  queueName: "tasks"
+
+mongodb:
+  name: "mydb"
+  collection: "documents"
+  path: "mongodb://localhost:27017"
+
+firebase:
+  projectId: "my-project-id"
+  privateKeyId: "key-id"
+  privateKey: "${FIREBASE_PRIVATE_KEY}"  # Использование переменной окружения для секрета
+  clientEmail: "firebase-adminsdk@my-project.iam.gserviceaccount.com"
+  clientId: "client-id"
+  clientX509CertUrl: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk%40my-project.iam.gserviceaccount.com"
+
+logging:
+  isProduction: false
+  vectorURL: "http://vector:9880"

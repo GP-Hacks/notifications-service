@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/GP-Hacks/notifications/config"
+	"github.com/GP-Hacks/notifications/internal/config"
 	"github.com/GP-Hacks/notifications/internal/models"
 	notification_service "github.com/GP-Hacks/notifications/internal/services/notifications_service"
 	"github.com/streadway/amqp"
@@ -30,7 +30,7 @@ func (c *NotificationsController) StartConsumer() error {
 	}
 
 	msgs, err := ch.Consume(
-		config.Cfg.QueueName,
+		config.Cfg.RabbitMQ.QueueName,
 		"",
 		true,
 		false,

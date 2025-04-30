@@ -4,6 +4,7 @@ import (
 	"context"
 	"net"
 
+	"github.com/GP-Hacks/notifications/internal/config"
 	"github.com/GP-Hacks/notifications/internal/service_provider"
 	"github.com/GP-Hacks/notifications/internal/utils/logger"
 	proto "github.com/GP-Hacks/proto/pkg/api/notifications"
@@ -14,6 +15,8 @@ import (
 )
 
 func main() {
+	config.LoadConfig("./config")
+
 	serviceProvider := service_provider.NewServiceProvider()
 	logger.SetupLogger("http://vector:9880")
 
