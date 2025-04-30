@@ -4,10 +4,9 @@ import (
 	"context"
 
 	"github.com/GP-Hacks/notifications/config"
-	"github.com/GP-Hacks/notifications/internal/utils/logger"
+	"github.com/rs/zerolog/log"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"go.uber.org/zap"
 )
 
 func (s *ServiceProvider) MongoClient() *mongo.Client {
@@ -15,7 +14,7 @@ func (s *ServiceProvider) MongoClient() *mongo.Client {
 		clientOpt := options.Client().ApplyURI(config.Cfg.MongoDBPath)
 		cl, err := mongo.Connect(context.Background(), clientOpt)
 		if err != nil {
-			logger.Fatal("Failed connect to MongoDB", zap.Error(err))
+			log.Fatal().Msg("Failed connect to MongoDB")
 		}
 
 		s.mongoClient = cl

@@ -7,8 +7,7 @@ import (
 	firebase "firebase.google.com/go"
 	"firebase.google.com/go/messaging"
 	"github.com/GP-Hacks/notifications/config"
-	"github.com/GP-Hacks/notifications/internal/utils/logger"
-	"go.uber.org/zap"
+	"github.com/rs/zerolog/log"
 	"google.golang.org/api/option"
 )
 
@@ -30,13 +29,13 @@ func (s *ServiceProvider) FirebaseApp() *firebase.App {
 
 		credentialsJSON, err := json.Marshal(creds)
 		if err != nil {
-			panic(err)
+			log.Fatal().Msg("Failed unmarshal credentials")
 		}
 
 		opt := option.WithCredentialsJSON(credentialsJSON)
 		app, err := firebase.NewApp(context.Background(), nil, opt)
 		if err != nil {
-			logger.Fatal("Failed init firebase app", zap.Error(err))
+			log.Fatal().Msg("Failed init Firebase App")
 		}
 
 		s.firebaseApp = app
@@ -49,7 +48,7 @@ func (s *ServiceProvider) MessagingClient() *messaging.Client {
 	if s.messagingClient == nil {
 		client, err := s.FirebaseApp().Messaging(context.Background())
 		if err != nil {
-			logger.Fatal("Failed init firebase messaging client", zap.Error(err))
+			log.Fatal().Msg("Failed get MessagingClient from Firebase App")
 		}
 
 		s.messagingClient = client

@@ -6,38 +6,25 @@ import (
 
 	"github.com/GP-Hacks/notifications/internal/service_provider"
 	"github.com/GP-Hacks/notifications/internal/utils/logger"
-	proto "github.com/GP-Hacks/proto/pkg/api"
-	"go.uber.org/zap"
+	proto "github.com/GP-Hacks/proto/pkg/api/notifications"
+	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/reflection"
 )
 
 func main() {
-	logger.Initialize(logger.Config{
-		LogLevel:    "debug",
-		Development: true,
-		OutputPaths: []string{"stdout", "app.log"},
-	})
-	defer logger.Sync()
-	logger.Info(
-		"Application started",
-	)
-
 	serviceProvider := service_provider.NewServiceProvider()
+	logger.SetupLogger("http://vector:9880")
+
+	log.Info().Msg("Applications started")
 
 	defer func() {
 		if err := serviceProvider.MongoClient().Disconnect(context.Background()); err != nil {
-			logger.Error(
-				"Failed disconnect to MongoDB",
-				zap.Error(err),
-			)
+			log.Error().Msg("Failed disconnect to MongoDB")
 		}
 		if err := serviceProvider.RabbitmqConnection().Close(); err != nil {
-			logger.Error(
-				"Failed close RabbitMQ connection",
-				zap.Error(err),
-			)
+			log.Error().Msg("Failed close RabbitMQ connection")
 		}
 	}()
 
@@ -48,17 +35,11 @@ func main() {
 
 	list, err := net.Listen("tcp", ":8080")
 	if err != nil {
-		logger.Fatal(
-			"Failed start listen",
-			zap.Error(err),
-		)
+		log.Fatal().Msg("Failed start listen port")
 	}
 
 	err = grpcServer.Serve(list)
 	if err != nil {
-		logger.Fatal(
-			"Failed serve grpc",
-			zap.Error(err),
-		)
+		log.Fatal().Msg("Failed serve grpc")
 	}
 }
