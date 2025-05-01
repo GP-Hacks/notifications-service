@@ -14,6 +14,7 @@ FROM alpine:latest
 WORKDIR /root/
 
 COPY --from=builder /app/notifications/cmd/notifications/notifications_service .
+COPY --from=builder /app/notifications/config/config.yaml ./config/config.yaml
 
 EXPOSE 8080
 

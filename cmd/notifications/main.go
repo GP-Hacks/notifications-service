@@ -16,11 +16,16 @@ import (
 
 func main() {
 	config.LoadConfig("./config")
+	logger.SetupLogger()
 
 	serviceProvider := service_provider.NewServiceProvider()
-	logger.SetupLogger("http://vector:9880")
 
 	log.Info().Msg("Applications started")
+	if config.Cfg.Logging.IsProduction {
+		log.Info().Msg("Started in production mode")
+	} else {
+		log.Info().Msg("Started in debug mode")
+	}
 
 	defer func() {
 		if err := serviceProvider.MongoClient().Disconnect(context.Background()); err != nil {
@@ -36,7 +41,7 @@ func main() {
 
 	proto.RegisterNotificationsServer(grpcServer, serviceProvider.TokensController())
 
-	list, err := net.Listen("tcp", ":8080")
+	list, err := net.Listen("tcp", ":"+config.Cfg.Grpc.Port)
 	if err != nil {
 		log.Fatal().Msg("Failed start listen port")
 	}

@@ -1,13 +1,13 @@
 grpc:
-  port: "50051"
+  port: "8080"
 
 rabbitmq:
   address: "amqp://guest:guest@localhost:5672/"
-  queueName: "tasks"
+  queueName: "notifications"
 
 mongodb:
-  name: "mydb"
-  collection: "documents"
+  name: "notifications"
+  collection: "tokens"
   path: "mongodb://localhost:27017"
 
 firebase:
@@ -19,5 +19,5 @@ firebase:
   clientX509CertUrl: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk%40my-project.iam.gserviceaccount.com"
 
 logging:
-  isProduction: false
-  vectorURL: "http://vector:9880"
+  isProduction: true
+  vectorURL: "http://host.docker.internal:9880"
