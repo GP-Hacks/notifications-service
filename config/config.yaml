@@ -2,8 +2,9 @@ grpc:
   port: "8080"
 
 rabbitmq:
-  address: "amqp://guest:guest@localhost:5672/"
-  queueName: "notifications"
+  address: ${APP_RABBITMQ_ADDRESS}
+  notifications_queue: "notifications"
+  email_queue: "email"
 
 mongodb:
   name: "notifications"
@@ -11,13 +12,20 @@ mongodb:
   path: "mongodb://localhost:27017"
 
 firebase:
-  projectId: "my-project-id"
-  privateKeyId: "key-id"
-  privateKey: "${FIREBASE_PRIVATE_KEY}"  # Использование переменной окружения для секрета
+  projectId: "tatarstan-resident-card"
+  privateKeyId: "28c7f5f101e38d4ec85cab98c7513c086617842e"
+  privateKey: "${APP_FIREBASE_PRIVATE_KEY}"
   clientEmail: "firebase-adminsdk@my-project.iam.gserviceaccount.com"
-  clientId: "client-id"
+  clientId: "114519616054576525133"
   clientX509CertUrl: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk%40my-project.iam.gserviceaccount.com"
 
 logging:
-  isProduction: true
-  vectorURL: "http://host.docker.internal:9880"
+  isProduction: ${APP_LOGGING_IS_PRODUCTION}
+  vectorURL: "http://vector:8080"
+
+mail:
+  host: "sm28.hosting.reg.ru"
+  port: 587
+  password: ${APP_MAIL_PASSWORD}
+  username: "info@tatarstan-card.ru"
+  from: "info@tatarstan-card.ru"
