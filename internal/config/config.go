@@ -14,8 +14,9 @@ type Config struct {
 	} `mapstructure:"grpc"`
 
 	RabbitMQ struct {
-		Address   string `mapstructure:"address"`
-		QueueName string `mapstructure:"queueName"`
+		Address            string `mapstructure:"address"`
+		NotificationsQueue string `mapstructure:"notifications_queue"`
+		EmailQueue         string `mapstructure:"email_queue"`
 	} `mapstructure:"rabbitmq"`
 
 	MongoDB struct {
@@ -37,6 +38,14 @@ type Config struct {
 		IsProduction bool   `mapstructure:"isProduction"`
 		VectorURL    string `mapstructure:"vectorURL"`
 	} `mapstructure:"logging"`
+
+	Mail struct {
+		Host     string `mapstructure:"host"`
+		Port     int    `mapstructure:"port"`
+		Username string `mapstructure:"username"`
+		Password string `mapstructure:"password"`
+		From     string `mapstructure:"from"`
+	} `mapstructure:"mail"`
 }
 
 var Cfg Config
@@ -89,7 +98,8 @@ func setDefaults(v *viper.Viper) {
 	v.SetDefault("grpc.port", "50051")
 
 	v.SetDefault("rabbitmq.address", "amqp://guest:guest@localhost:5672/")
-	v.SetDefault("rabbitmq.queueName", "tasks")
+	v.SetDefault("rabbitmq.notifications_queue", "tasks")
+	v.SetDefault("rabbitmq.email_queue", "tasks")
 
 	v.SetDefault("mongodb.name", "mydb")
 	v.SetDefault("mongodb.collection", "documents")
@@ -97,6 +107,12 @@ func setDefaults(v *viper.Viper) {
 
 	v.SetDefault("logging.isProduction", false)
 	v.SetDefault("logging.vectorURL", "http://vector:9880")
+
+	v.SetDefault("mail.host", "tasks")
+	v.SetDefault("mail.port", "tasks")
+	v.SetDefault("mail.username", "tasks")
+	v.SetDefault("mail.password", "tasks")
+	v.SetDefault("mail.from", "tasks")
 }
 
 func validateConfig(cfg *Config) error {
