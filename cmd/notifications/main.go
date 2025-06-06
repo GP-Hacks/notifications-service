@@ -36,6 +36,14 @@ func main() {
 		}
 	}()
 
+	if err := serviceProvider.NotificationsController().StartConsumer(); err != nil {
+		log.Error().Msg(err.Error())
+	}
+
+	if err := serviceProvider.EmailController().StartConsumer(); err != nil {
+		log.Error().Msg(err.Error())
+	}
+
 	grpcServer := grpc.NewServer(grpc.Creds(insecure.NewCredentials()))
 	reflection.Register(grpcServer)
 
