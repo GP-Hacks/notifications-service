@@ -29,8 +29,19 @@ func (c *NotificationsController) StartConsumer() error {
 		return err
 	}
 
+	if _, err := ch.QueueDeclare(
+		config.Cfg.RabbitMQ.NotificationsQueue,
+		true,
+		false,
+		false,
+		false,
+		nil,
+	); err != nil {
+		return err
+	}
+
 	msgs, err := ch.Consume(
-		config.Cfg.RabbitMQ.QueueName,
+		config.Cfg.RabbitMQ.NotificationsQueue,
 		"",
 		true,
 		false,
