@@ -20,3 +20,11 @@ func (s *ServiceProvider) TokensController() *grpc.TokensController {
 
 	return s.tokensController
 }
+
+func (s *ServiceProvider) EmailController() *rabbitmq.EmailController {
+	if s.emailController == nil {
+		s.emailController = rabbitmq.NewEmailController(s.RabbitmqConnection(), s.EmailService())
+	}
+
+	return s.emailController
+}

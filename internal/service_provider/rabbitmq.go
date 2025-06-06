@@ -10,7 +10,7 @@ func (s *ServiceProvider) RabbitmqConnection() *amqp.Connection {
 	if s.rabbitmqConnection == nil {
 		conn, err := amqp.Dial(config.Cfg.RabbitMQ.Address)
 		if err != nil {
-			log.Fatal().Msg("Failed connect to RabbitMQ")
+			log.Fatal().Msg(err.Error())
 		}
 
 		s.rabbitmqConnection = conn
