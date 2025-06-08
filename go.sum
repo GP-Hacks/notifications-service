@@ -28,6 +28,8 @@ firebase.google.com/go v3.13.0+incompatible/go.mod h1:xlah6XbEyW6tbfSklcfe5FHJIw
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/GP-Hacks/proto v1.1.5 h1:Q6PIzfD6idMORb0ZpvMHdXd5Txi47jSw2QYw1WuF5l4=
 github.com/GP-Hacks/proto v1.1.5/go.mod h1:bA85LnYV4CBZwtSiarvcHjhAzDu/nGd7EvI9ImTOVIc=
+github.com/GP-Hacks/proto v1.3.2 h1:rqMdJ+RB1N7DyIXmumJKiFRzjuvoococeGOesOt622g=
+github.com/GP-Hacks/proto v1.3.2/go.mod h1:bA85LnYV4CBZwtSiarvcHjhAzDu/nGd7EvI9ImTOVIc=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.26.0 h1:f2Qw/Ehhimh5uO1fayV0QIW7DShEQqhtUfhYc+cBPlw=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.26.0/go.mod h1:2bIszWvQRlJVmJLiuLhukLImRjKPcYdzzsx6darK02A=
 github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/metric v0.48.1 h1:UQ0AhxogsIRZDkElkblfnwjc3IaltCm2HUMvezQaL7s=
