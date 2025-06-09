@@ -21,7 +21,7 @@ firebase:
 
 logging:
   isProduction: ${APP_LOGGING_IS_PRODUCTION}
-  vectorURL: "http://infrastructure_vector_1:8080"
+  vectorURL: "http://infrastructure_vector_1:9880"
 
 mail:
   host: "sm28.hosting.reg.ru"
